@@ -3,4 +3,4 @@ server:
 
 spring:
   application:
-    name: spring-cloud-config-client
+    name: service-config-client
