@@ -4,3 +4,10 @@ server:
 spring:
   application:
     name: service-config-client
+
+# springboot2.0后要加这玩意，而不是那个management.security.enabled=false，这是1.5的过时方法了
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh

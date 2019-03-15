@@ -1,14 +1,29 @@
 server:
-  port: 8040
+  port: 8001
 
 spring:
   application:
-    name: spring-cloud-config-server
+    name: service-config
   cloud:
     config:
       server:
-        git:
-          uri: https://github.com/FunctionD/springcloud-config-file     # ����git�ֿ�ĵ�ַ
-          search-paths: config-repo                             # git�ֿ��ַ�µ���Ե�ַ���������ö������,�ָ
-          username:                                             # git�ֿ���˺�
-          password:                                             # git�ֿ������
+        git:  # 如果使用SVN这个改成svn:
+          uri: https://github.com/FunctionD/springcloud-config-file   # 配置git仓库的地址
+          search-paths: config-repo                                   # git仓库地址下的相对地址，可以配置多个，用,分割。
+          username:                                                   # git仓库的账号
+          password:                                                   # git仓库的密码
+#  # SVN需要显示声明subversion
+#  profiles:
+#    active: subversion
+
+# springboot2.0后要加这玩意，而不是那个management.security.enabled=false，这是1.5的过时方法了（而且以前只在client加，现在server也要）
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/   # 注册中心eurka地址

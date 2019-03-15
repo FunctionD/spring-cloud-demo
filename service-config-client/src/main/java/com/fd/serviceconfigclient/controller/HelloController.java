@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * @author FD
  */
-@RestController
 @RefreshScope
+@RestController
 public class HelloController {
     @Value("${neo.hello}")
     private String hello;
