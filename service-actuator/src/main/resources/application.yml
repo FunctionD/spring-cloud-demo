@@ -1,0 +1,24 @@
+info:
+  app:
+    name: @project.artifactId@
+    encoding: @project.build.sourceEncoding@
+    version: 1.0.0
+    test: test
+    java:
+      source: "@java.version@"
+      target: "@java.version@"
+
+management:
+  server:
+      servlet:
+        context-path: /management
+      port: 8088
+  endpoints:
+    web:
+      exposure:
+        include: "*"  # *代表打开所有监控点，或者只选择打开部分，beans,trace之类（yml里这个*要放双引号里，不然无法启动）
+      base-path: /monitor # 代表启用单独的url地址来监控Spring Boot应用，为了安全一般都启用独立的端口来访问后端的监控信息。（默认为/actuator/*，现在是/monitor/*）
+    health:
+      show-details: always
+    shutdown:
+      enabled: true
